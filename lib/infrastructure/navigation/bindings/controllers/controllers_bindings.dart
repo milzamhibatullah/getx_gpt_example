@@ -1,0 +1,1 @@
+export 'package:getx_gpt_example/infrastructure/navigation/bindings/controllers/home.controller.binding.dart'; 

@@ -1,0 +1,1 @@
+export 'package:getx_gpt_example/presentation/home/home.screen.dart';
