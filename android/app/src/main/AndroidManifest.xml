@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="getx_gpt_example"
+        android:label="Getx Gpt"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

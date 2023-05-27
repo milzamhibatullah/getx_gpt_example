@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "867227351932",
+    "project_id": "getx-gpt",
+    "storage_bucket": "getx-gpt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867227351932:android:ec3b6e4b33b610d28482f9",
+        "android_client_info": {
+          "package_name": "com.devwithjams.getxgptexample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfuHEHw2SHiXh3PRa-CosKKRnlyOtwopY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867227351932:android:fa6d2a4de02c134d8482f9",
+        "android_client_info": {
+          "package_name": "com.example.getx_gpt_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfuHEHw2SHiXh3PRa-CosKKRnlyOtwopY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
