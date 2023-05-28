@@ -1,16 +1,18 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ChatModel{
+class ChatClass{
   String? docId;
   String? content;
+  Timestamp? createdAt;
   bool? isBot;
-  ChatModel({this.docId,this.content,this.isBot});
+  ChatClass({this.docId,this.content,this.isBot,this.createdAt});
 
   ///converting snapshot to model
-  ChatModel.fromMap(DocumentSnapshot snapshot){
+  ChatClass.fromMap(DocumentSnapshot snapshot){
     docId=snapshot.id;
     isBot=snapshot['is_bot'];
+    createdAt=snapshot['created_at'];
     content=snapshot['content'];
   }
 

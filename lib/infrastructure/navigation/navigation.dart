@@ -43,7 +43,7 @@ class Nav {
     ),
     GetPage(
       name: Routes.CHAT,
-      page: () => const ChatScreen(),
+      page: () =>  ChatScreen(),
       binding: ChatControllerBinding(),
     ),
   ];

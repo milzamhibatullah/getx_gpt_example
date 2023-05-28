@@ -12,6 +12,13 @@ class MessagesRepository {
       _messageService.getMessageFromFirebase();
 
   ///get list chate by messages doc id
-  Future<List<ChatModel>> getChatFromMessageId({docId}) =>
+  Future<List<ChatClass>> getChatFromMessageId({docId}) =>
       _chatService.getChatFromMessageId(docId: docId);
+  ///add chats
+  Future<void>addChats(docId,isBot,content)=>_chatService.addChats(docId, isBot, content);
+  ///initiate open api
+  Future<void> initiateOpenApi()=>_chatService.initiateOpenAiApi();
+
+  ///send chats to ai
+  Future<String?> sendChatToAi(question)=>_chatService.sendChatToAi(question: question);
 }

@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'controllers/chat.controller.dart';
 
 class ChatScreen extends GetView<ChatController> {
-  const ChatScreen({Key? key}) : super(key: key);
-
+  ChatScreen({Key? key}) : super(key: key);
+  final TextEditingController _questionField = TextEditingController();
+  final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +18,7 @@ class ChatScreen extends GetView<ChatController> {
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
+        controller: _scrollController,
         child: Obx(
           () => controller.isLoading.value
               ? const Center(
@@ -46,7 +48,17 @@ class ChatScreen extends GetView<ChatController> {
                                           .chats.value[index].content),
                             ),
                           )
-                        : Container()
+                        : Container(),
+
+                    if(controller.isGptOnLoading.value)...[
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      const CircularProgressIndicator(),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                    ]
                   ],
                 ),
         ),
@@ -75,7 +87,8 @@ class ChatScreen extends GetView<ChatController> {
                     borderRadius: BorderRadius.circular(20.0)),
                 child: TextField(
                   maxLines: null,
-                  // controller: controller,
+                   controller: _questionField,
+                  textInputAction: TextInputAction.send,
                   // style: appFonts.style(),
                   decoration: InputDecoration(
                     filled: true,
@@ -103,9 +116,11 @@ class ChatScreen extends GetView<ChatController> {
             ),
             FloatingActionButton(
               onPressed: () {
-                // if (controller.text.isNotEmpty) {
-                //   _submitChat();
-                // }
+                if (_questionField.text.isNotEmpty) {
+                  controller.sendChatsToAi(_questionField.text,_scrollController);
+                }else{
+                  Get.rawSnackbar(message: 'please input a question');
+                }
               },
               elevation: 10.0,
               child: const Icon(Icons.send),
