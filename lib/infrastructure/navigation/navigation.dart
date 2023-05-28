@@ -41,5 +41,10 @@ class Nav {
       page: () => const AuthScreen(),
       binding: AuthControllerBinding(),
     ),
+    GetPage(
+      name: Routes.CHAT,
+      page: () => const ChatScreen(),
+      binding: ChatControllerBinding(),
+    ),
   ];
 }

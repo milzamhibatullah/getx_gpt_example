@@ -4,7 +4,8 @@ class Routes {
     return SPLASH;
   }
 
+  static const AUTH = '/auth';
   static const HOME = '/home';
   static const SPLASH = '/splash';
-  static const AUTH = '/auth';
+  static const CHAT = '/chat';
 }

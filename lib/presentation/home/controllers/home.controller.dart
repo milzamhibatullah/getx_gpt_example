@@ -12,12 +12,13 @@ class HomeController extends GetxController {
   ///define  repository
   final _userRepository = UserRepository();
   final _messageRepository = MessagesRepository();
-  ///create states for user data
+  ///create states for data
   var user = User().obs;
   var messages = <MessageModel>[].obs;
   ///create loading value
   var isLoading= false.obs;
-
+  ///set message data;
+  var message = MessageModel().obs;
 
 
   @override
@@ -64,6 +65,12 @@ class HomeController extends GetxController {
     }
   }
 
+  /// navigate to chat screen
+  void navigateToChatScreen(index)async{
+    ///set selected model message
+    message.value=messages.value[index];
+    Get.toNamed(Routes.CHAT);
+  }
  Future<void> onRefreshData() async{
     await _getMessages();
  }

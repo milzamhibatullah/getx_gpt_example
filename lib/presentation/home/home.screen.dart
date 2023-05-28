@@ -66,7 +66,9 @@ class HomeScreen extends GetView<HomeController> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            controller.navigateToChatScreen(index);
+          },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(message.lastMessage ?? 'no messages'),
