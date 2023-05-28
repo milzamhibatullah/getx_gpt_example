@@ -19,8 +19,8 @@ class ChatService {
 
   String get _messageCollection => 'messages';
 
-  ///ggpt key
-  String get _gptKey => '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';
+  ///gpt key
+  String get _gptKey => '<define token>';
 
   ///initiate openai apikey
   Future<void> initiateOpenAiApi() async {

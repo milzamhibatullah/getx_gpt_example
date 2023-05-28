@@ -65,11 +65,48 @@ class HomeController extends GetxController {
     }
   }
 
+  ///get list messages
+  Future<void> addNewMessage()async{
+    try{
+      ///initiate loading
+      isLoading.value=true;
+      ///call get messages from repository
+      await _messageRepository.addNewMessage();
+      await _getMessages();
+      navigateToChatScreen(messages.value.last);
+      ///try to display how much data
+      log('count of messages ${messages.value.length}',name: 'Home Controller');
+      ///stop loading
+      Future.delayed(const Duration(seconds: 1),()=>isLoading.value=false);
+    }catch(e){
+      isLoading.value=false;
+      Get.rawSnackbar(message: 'Failed to fetch messages');
+    }
+  }
+
   /// navigate to chat screen
-  void navigateToChatScreen(index)async{
+  void navigateToChatScreen(MessageModel model)async{
     ///set selected model message
-    message.value=messages.value[index];
-    Get.toNamed(Routes.CHAT);
+    message.value=model;
+    Get.toNamed(Routes.CHAT)?.whenComplete(()async => await _getMessages());
+  }
+
+  ///update the last message on message
+  Future<void> updateLastMessage(msg)async{
+    try{
+      ///initiate loading
+      isLoading.value=true;
+      ///call get messages from repository
+      await _messageRepository.updateLastMessage(message.value.docId,msg);
+      await _getMessages();
+      ///try to display how much data
+      log('count of messages ${messages.value.length}',name: 'Home Controller');
+      ///stop loading
+      Future.delayed(const Duration(seconds: 1),()=>isLoading.value=false);
+    }catch(e){
+      isLoading.value=false;
+     /// Get.rawSnackbar(message: 'Failed to fetch messages');
+    }
   }
  Future<void> onRefreshData() async{
     await _getMessages();

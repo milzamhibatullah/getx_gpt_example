@@ -73,6 +73,7 @@ class ChatController extends GetxController {
        chats.value.add(ChatClass(docId: 'i1231dasd124',content: response,isBot: true));
       isGptOnLoading.value=false;
       _animateScrollToBottom(scrollController);
+      await Get.find<HomeController>().updateLastMessage(chats.value.last.content);
     }catch(e){
       log('error get chats : $e',name: 'Chat Controller');
       isLoading.value=false;

@@ -19,6 +19,9 @@ class HomeScreen extends GetView<HomeController> {
               icon: const Icon(Icons.logout_rounded))
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        controller.addNewMessage();
+      },child: const Icon(Icons.add),),
       body: RefreshIndicator(
         onRefresh: ()=>controller.onRefreshData(),
         child: SingleChildScrollView(
@@ -67,7 +70,7 @@ class HomeScreen extends GetView<HomeController> {
         ),
         child: InkWell(
           onTap: () {
-            controller.navigateToChatScreen(index);
+            controller.navigateToChatScreen(message);
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),

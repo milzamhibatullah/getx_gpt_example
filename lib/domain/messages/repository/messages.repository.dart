@@ -14,6 +14,11 @@ class MessagesRepository {
   ///get list chate by messages doc id
   Future<List<ChatClass>> getChatFromMessageId({docId}) =>
       _chatService.getChatFromMessageId(docId: docId);
+
+  ///add new message
+  Future<void>addNewMessage()=>_messageService.addNewMessage();
+  ///update last message based on last chats
+  Future<void>updateLastMessage(docId,msg)=>_messageService.updateLastMessage(docId,msg);
   ///add chats
   Future<void>addChats(docId,isBot,content)=>_chatService.addChats(docId, isBot, content);
   ///initiate open api
@@ -21,4 +26,6 @@ class MessagesRepository {
 
   ///send chats to ai
   Future<String?> sendChatToAi(question)=>_chatService.sendChatToAi(question: question);
+
+
 }
