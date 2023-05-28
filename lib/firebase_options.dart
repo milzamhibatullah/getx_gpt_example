@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -58,5 +55,16 @@ class DefaultFirebaseOptions {
     messagingSenderId: '867227351932',
     projectId: 'getx-gpt',
     storageBucket: 'getx-gpt.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBekTCpwmzrjZTvBi-4b3D01K3tPiUowT8',
+    appId: '1:867227351932:ios:7808a064eb4e153d8482f9',
+    messagingSenderId: '867227351932',
+    projectId: 'getx-gpt',
+    storageBucket: 'getx-gpt.appspot.com',
+    androidClientId: '867227351932-q9j4uk86u2d0qsfmj4o60tahco9rfm4i.apps.googleusercontent.com',
+    iosClientId: '867227351932-bvqhlcchhl0cpfduqapl6qdu8i6gtkpo.apps.googleusercontent.com',
+    iosBundleId: 'com.devwithjams.getxgptexample',
   );
 }

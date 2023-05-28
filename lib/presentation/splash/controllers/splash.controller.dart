@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:getx_gpt_example/domain/auth/user.repository.dart';
+import 'package:getx_gpt_example/infrastructure/navigation/routes.dart';
 
 class SplashController extends GetxController {
-
-  final count = 0.obs;
+  final _authRepository = UserRepository();
   @override
   void onInit() {
 
@@ -11,8 +12,13 @@ class SplashController extends GetxController {
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 2),()=>Get.offAllNamed('/home'));
-    print('here');
+    Future.delayed(const Duration(seconds: 2),()async{
+      if(await _authRepository.isSignIn()){
+        Get.offAllNamed(Routes.HOME);
+      }else{
+        Get.offAllNamed(Routes.AUTH);
+      }
+    });
     super.onReady();
   }
 
@@ -21,5 +27,4 @@ class SplashController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
