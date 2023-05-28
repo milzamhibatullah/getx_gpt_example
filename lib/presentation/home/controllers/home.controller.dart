@@ -2,15 +2,19 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:getx_gpt_example/domain/auth/user.repository.dart';
+import 'package:getx_gpt_example/domain/messages/model/message.model.dart';
+import 'package:getx_gpt_example/domain/messages/repository/messages.repository.dart';
 import 'package:getx_gpt_example/infrastructure/navigation/routes.dart';
 
 import '../../../domain/auth/model/user.dart';
 
 class HomeController extends GetxController {
-  ///define user repository
+  ///define  repository
   final _userRepository = UserRepository();
+  final _messageRepository = MessagesRepository();
   ///create states for user data
   var user = User().obs;
+  var messages = <MessageModel>[].obs;
   ///create loading value
   var isLoading= false.obs;
 
@@ -19,6 +23,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     _getUserInfo();
+    _getMessages();
     super.onReady();
   }
 
@@ -42,4 +47,24 @@ class HomeController extends GetxController {
     }
   }
 
+  ///get list messages
+  Future<void> _getMessages()async{
+    try{
+      ///initiate loading
+      isLoading.value=true;
+      ///call get messages from repository
+      messages.value=await _messageRepository.getMessagesFromFirebase();
+      ///try to display how much data
+      log('count of messages ${messages.value.length}',name: 'Home Controller');
+      ///stop loading
+      Future.delayed(const Duration(seconds: 1),()=>isLoading.value=false);
+    }catch(e){
+      isLoading.value=false;
+      Get.rawSnackbar(message: 'Failed to fetch messages');
+    }
+  }
+
+ Future<void> onRefreshData() async{
+    await _getMessages();
+ }
 }

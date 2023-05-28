@@ -1,16 +1,11 @@
 class User {
-  final String? name;
-  final String? email;
-  final String? accToken;
-  final String? idToken;
-  final String? urlPhoto;
+  String? name;
+  String? email;
+  String? accToken;
+  String? idToken;
+  String? urlPhoto;
 
-  User(
-      { this.name,
-       this.email,
-       this.accToken,
-       this.idToken,
-       this.urlPhoto});
+  User({this.name, this.email, this.accToken, this.idToken, this.urlPhoto});
 
   factory User.fromJson(Map<String, dynamic> json) => User(
       name: json['name'],
