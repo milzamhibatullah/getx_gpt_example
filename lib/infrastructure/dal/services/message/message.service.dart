@@ -2,20 +2,21 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:getx_gpt_example/domain/core/constants/collection.constants.dart';
 import 'package:getx_gpt_example/domain/messages/model/message.model.dart';
 
-class MessageService{
+class MessageService {
   ///initialize firestore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   /// initialize the collection
   late CollectionReference _collectionReference;
   ///define the collection
-  String  get _collection =>'messages';
+  final String   _collection ='messages';
   ///get messsage from firebase
   Future<List<MessageModel>> getMessageFromFirebase()async{
     try{
       ///initalize collection
-      _collectionReference = _firestore.collection(_collection);
+      _collectionReference = _firestore.collection(CollectionConstants.messageCollection);
       final results = await _collectionReference.orderBy('created_at').get();
       return results.docs.map((e) => MessageModel.fromMap(e)).toList();
     }catch(e){

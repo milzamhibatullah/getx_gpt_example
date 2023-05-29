@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:getx_gpt_example/domain/core/constants/collection.constants.dart';
 import 'package:getx_gpt_example/domain/messages/model/chat.model.dart';
 
 class ChatService {
@@ -14,13 +15,9 @@ class ChatService {
   /// initialize the collection
   late CollectionReference _collectionReference;
 
-  ///define the collection
-  String get _chatCollection => 'chats';
-
-  String get _messageCollection => 'messages';
 
   ///gpt key
-  String get _gptKey => '<define token>';
+  final String  _gptKey = '<define token>';
 
   ///initiate openai apikey
   Future<void> initiateOpenAiApi() async {
@@ -42,9 +39,9 @@ class ChatService {
     try {
       ///initalize collection
       _collectionReference = _firestore
-          .collection(_messageCollection)
+          .collection(CollectionConstants.messageCollection)
           .doc(docId)
-          .collection(_chatCollection);
+          .collection(CollectionConstants.chatCollection);
 
       ///get the collections
       final results = await _collectionReference.orderBy('created_at').get();
@@ -59,9 +56,9 @@ class ChatService {
     try {
       ///initalize collection
       _collectionReference = _firestore
-          .collection(_messageCollection)
+          .collection(CollectionConstants.messageCollection)
           .doc(docId)
-          .collection(_chatCollection);
+          .collection(CollectionConstants.chatCollection);
 
       ///get the collections
       return _collectionReference.add({'is_bot':isBot,'content':content, 'created_at':Timestamp.now()});
