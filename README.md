@@ -1,16 +1,5 @@
 # getx_gpt_example
 
-A new Flutter project.
+Example project that use chat_gpt_sdk on flutter. This project use google_sign_in as login, firestore.
+Firestore data is used for save all communication interaction between user and ai
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
